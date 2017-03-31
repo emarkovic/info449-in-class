@@ -9,10 +9,13 @@
 import UIKit
 
 class TodoTableViewController: UITableViewController {
-
+    
+    @IBOutlet weak var nagivationItem: UINavigationItem!
+    var todoItems = ["Groceries", "Go to bank", "Do iOS homework", "Sleep", "Eat"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.nagivationItem.title = "INFO 449 ToDo List"
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -34,15 +37,15 @@ class TodoTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 1
+        return self.todoItems.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: TodoTableViewCell = tableView.dequeueReusableCell(withIdentifier: "TodoCell", for: indexPath) as! TodoTableViewCell
 
-        cell.textLabel?.text = "my first task";
-        cell.myLabel.text = "test";
+        let rowIndex = indexPath.row
+        cell.myLabel.text = self.todoItems[rowIndex];
 
         return cell
     }
@@ -93,4 +96,11 @@ class TodoTableViewController: UITableViewController {
     }
     */
 
+    @IBAction func addTask(_ sender: Any) {
+        print("gotHere")
+        
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let vc = sb.instantiateViewController(withIdentifier: "AddTaskViewController")
+        self.navigationController?.present(vc, animated: true, completion: nil)
+    }
 }
