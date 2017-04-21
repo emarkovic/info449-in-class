@@ -11,7 +11,11 @@ import UIKit
 class TodoTableViewController: UITableViewController {
     
     @IBOutlet weak var nagivationItem: UINavigationItem!
-    var todoItems = ["Groceries", "Go to bank", "Do iOS homework", "Sleep", "Eat"]
+    var todoItems = [
+        Task(title: "Groceries", due: Date()),
+        Task(title: "Go to bank", due: Date()),
+        Task(title: "Do iOS homework", due: Date())
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,11 +49,41 @@ class TodoTableViewController: UITableViewController {
         let cell: TodoTableViewCell = tableView.dequeueReusableCell(withIdentifier: "TodoCell", for: indexPath) as! TodoTableViewCell
 
         let rowIndex = indexPath.row
-        cell.myLabel.text = self.todoItems[rowIndex];
-
+        cell.myLabel.text = self.todoItems[rowIndex].title;
+        
+        let task = self.todoItems[indexPath.row]
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM/dd/yy"
+        cell.dateLabel.text = formatter.string(from: task.due)
         return cell
     }
- 
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.tableView.reloadData()
+    }
+    
+    // MARK: - swipe to delete
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        // can only delete even rows
+//        return indexPath.row % 2 == 0
+        
+        // can delete all rows
+        return true
+    }
+    // this method is called when you press the delete btn
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == UITableViewCellEditingStyle.delete) {
+            // handle delete (by removing the data from your array and updating the tableview)
+            print("delete btn pressed")
+            self.tableView.beginUpdates()
+            // remove data from data source
+            self.todoItems.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+            self.tableView.endUpdates()
+        }
+    }
 
     /*
     // Override to support conditional editing of the table view.
@@ -100,7 +134,9 @@ class TodoTableViewController: UITableViewController {
         print("gotHere")
         
         let sb = UIStoryboard(name: "Main", bundle: nil)
-        let vc = sb.instantiateViewController(withIdentifier: "AddTaskViewController")
+        let vc: AddTaskViewController = sb.instantiateViewController(withIdentifier: "AddTaskViewController") as! AddTaskViewController
+        vc.todoItems = self.todoItems
+        vc.todoTableViewController = self;
         self.navigationController?.present(vc, animated: true, completion: nil)
     }
 }

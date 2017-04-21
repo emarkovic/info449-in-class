@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		61CDC8041EA0464100F7D476 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CDC8031EA0464100F7D476 /* Task.swift */; };
 		61FCF7261E8DE43D0085C15A /* AddTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61FCF7251E8DE43D0085C15A /* AddTaskViewController.swift */; };
 		9D1539651E8B4769005F865B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1539641E8B4769005F865B /* AppDelegate.swift */; };
 		9D15396A1E8B4769005F865B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D1539681E8B4769005F865B /* Main.storyboard */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		61CDC8031EA0464100F7D476 /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		61FCF7251E8DE43D0085C15A /* AddTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTaskViewController.swift; sourceTree = "<group>"; };
 		9D1539611E8B4769005F865B /* ToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D1539641E8B4769005F865B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				9D1539921E8B47F6005F865B /* TodoTableViewController.swift */,
 				9D1539941E8B4D5A005F865B /* TodoTableViewCell.swift */,
 				61FCF7251E8DE43D0085C15A /* AddTaskViewController.swift */,
+				61CDC8031EA0464100F7D476 /* Task.swift */,
 			);
 			path = ToDoList;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61CDC8041EA0464100F7D476 /* Task.swift in Sources */,
 				9D1539951E8B4D5A005F865B /* TodoTableViewCell.swift in Sources */,
 				61FCF7261E8DE43D0085C15A /* AddTaskViewController.swift in Sources */,
 				9D1539651E8B4769005F865B /* AppDelegate.swift in Sources */,
